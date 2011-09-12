@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>File upload</title>
+    </head>
+
+    <body>
+        <H1>Hello</H1>
+        <div id="test">
+            <p>test</p>
+        </div>
+
+        <H1>create file</H1>
+        <form action="." method="POST">{% csrf_token %}
+            Enter file name: <input type="text" name="fileName">
+            Enter data: <input type="text" name="data">
+            <input type="submit" value="Save"/>
+        </form>
+
+        <H2>created file</H2>
+        <div id="outputf">
+        {% if fname %}
+            <p>{{ fname }} : {{ data }}</p>
+        {% else %}
+            <p>not create</p>
+        {% endif %}
+        </div>
+
+        <H1>upload file</H1>
+        <form enctype="multipart/form-data" action="upload/" method="POST">{% csrf_token %}
+            <input type="file" name="upfile"/>
+            <input type="submit" value="Submit"/>
+        </form>
+    </body>
+
+</html>
