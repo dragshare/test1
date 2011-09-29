@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% trans "Log in" %}</h1>
+
+{% if form.non_field_errors %}
+{{form.non_field_errors}}
+{% endif %}
+
+<form method="post" action="?next={{ next|default:"/" }}">{% csrf_token %}
+<div>
+	<label for="id_username">{% trans "Username" %}:</label>
+	{{ form.username }}
+	{% if form.username.errors %}<span class="error">{{ form.username.errors|join:", " }}</span>{% endif %}
+</div>
+
+<div>
+    <label for="id_password">{% trans "Password" %}:</label>
+    {{ form.password }}
+    {% if form.password.errors %} <span class="error">{{ form.password.errors|join:", " }}</span>{% endif %}
+</div>
+
+<div class="buttons">
+	<button type="submit">{% trans "Log in" %}</button>
+</div>
+</form>
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript" charset="utf-8">
+	document.getElementById("id_username").focus();
+</script>
+{% endblock %}
+
