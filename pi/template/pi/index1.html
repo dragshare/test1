@@ -5,11 +5,10 @@
     <title>Your Personal Online File Home</title>
 
     <!-- Some CSS for the jQuery uploader UI -->
-    <link href="/static/css/jquery-ui.css" rel="stylesheet" id="theme">
+    <link rel="stylesheet" href="/static/css/jquery-ui.css" id="theme">
     <link href="/static/css/jquery.fileupload-ui.css" rel="stylesheet">
-    <link href="/static/css/x.css" rel="stylesheet">
-    <link href="/static/css/n.css" rel="stylesheet">
-    <link href="/static/css/d.css" rel="stylesheet">
+    <link href="/static/css/box.css" rel="stylesheet">
+    <link href="/static/css/minus.css" rel="stylesheet">
 
     <!-- jQuery Javascript -->
     <script src="/static/js/jquery.min.js"></script>
@@ -119,87 +118,175 @@
           -->
           <span class="subheader_vb"></span>
           <div class="subheader_viewinfo">
-            <p class="subheader_viewinfo_title">Mode:</p><ul class="subheader_viewmode_ul"><li><a class="vm_list" option_description="List Mode">List Mode</a></li><li><a class="vm_grid" option_description="Grid Mode">Grid Mode</a></li><li><a class="vm_linear" option_description="Linear Mode">Linear Mode</a></li><li><a class="vm_fs" option_description="Full Screen">Full Screen</a></li><li><a class="vm_theme" option_description="Lights Off"></a></li></ul>
+            <p class="subheader_viewinfo_title">Mode:</p><ul class="subheader_viewmode_ul"><li><a class="vm_list" option_description="List Mode">List Mode</a></li><li><a class="vm_grid" option_description="Grid Mode">Grid Mode</a></li><li><a href="/linear.html" class="vm_linear" option_description="Linear Mode">Linear Mode</a></li><li><a class="vm_fs" option_description="Full Screen">Full Screen</a></li><li><a class="vm_theme" option_description="Lights Off"></a></li></ul>
           </div>
         </div>
       </div>
     </div>
     <div class="clear"></div>
 
-    <div class="details_container">
-      <h2 class="subheader_filename">Find the Dot.jpg</h2>
-      <a class="btn btn_vieworiginal" target="_blank" id="details_view_dl_btn" href="/lDFDI43euYcPR">View Original</a>
-      <div class="details_stats" style="display: block; ">
-        <p class="subheader_pager"><span id="pager_current_number">1</span> of <span id="pager_total_number">3</span></p>
-        <span class="details_vb"></span>
-        <p class="details_stat">6 Views</p><span class="details_vb"></span><p class="details_stat">29.2 KB</p>
-      </div>
-      <div class="clear"></div>
-      <p class="description">Can You find where the dot is? Look into the white circles.</p>
-      <div class="clear"></div>
-    </div>
-
     <div class="viewport_container" id="presenter_main" style="height: 300px; ">
       <div class="viewport_minmax_container" id="gallery_menu_minmax">
         <div class="viewport_minmax_button minimized" option_description="Show Menu"></div>
       </div>
-      <div class="viewport_sidemenu_container viewer_mode" id="dm-gallery-menu" style="display: block; ">
+      <div class="viewport_sidemenu_container viewer_mode" id="dm-gallery-menu" style="display: none; ">
         <div class="viewport_sidemenu_section viewport_sidemenu_explorer" id="sidemenu_explorer">
-          <h3>Tags</h3>
+          <h3>Files</h3>
           <div class="clear"></div>
           <div class="explorer_container" style="">
-            <div class="items_container smartnav">
-              <ul class="navcategory">
-                <li class="cur ">
-                  <a class="navhead" href="/topics/"></a>
-                  <div class="ctr-tags">
-                    <a class="exmploer_downloadall" href="/blogs/tag/ta/">Travel</a>
-                    <a href="/blogs/tag/tb/">Business</a>
-                    <a href="/blogs/tag/tc/">Fun</a>
-                    <a href="/blogs/tag/lolita/">Chinese</a>
-                  </div>
-                </li>
-              </ul>
-           </div>
+            <div class="items_container">
+              <div class="item selected" itemid="DFDI43euYcPR" sortableid="0" style="">
+                <div class="item_name_div">
+                  <div class="name" title="Find the Dot.jpg"><span>Find the Dot</span>.jpg</div>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div class="item" itemid="vK46AG6iXHhU" sortableid="1">
+                <div class="item_name_div">
+                  <div class="name" title="Dot Again.jpg"><span>Dot Again</span>.jpg</div>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div class="item" itemid="TPsbPSxc5vVX" sortableid="2">
+                <div class="item_name_div">
+                  <div class="name" title="Look Likes buldging.jpg"><span>Look Likes buldging</span>.jpg</div>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+          <div class="explorer_footer">
+            <a class="explorer_downloadall" href="http://min.us/mbn1iDFXAp/gallery.zip">Download All</a>
           </div>
         </div>
         <div class="viewport_sidemenu_section viewport_sidemenu_shortlink" id="sidemenu_shortlink">
           <h3>Shortlink</h3>
           <div class="shortlink_container">
-            <input value="http://s.lnk/mbn1iDFXAp" spellcheck="false" readonly="readonly">
-          </div>
-        </div>
-        <div class="viewport_sidemenu_section viewport_sidemenu_shortlink" id="sidemenu_btns">
-          <div class="explorer_footer" style="float:left;">
-            <a class="explorer_downloadall" href="http://s.lnk/mbn1iDFXAp">Delete</a>
-            <a class="explorer_downloadall" href="http://s.lnk/mbn1iDFXAp">Download</a>
+            <input value="http://min.us/mbn1iDFXAp" spellcheck="false" readonly="readonly">
           </div>
         </div>
       </div>
-      <div class="scene viewer_mode" id="scene_main" style="opacity: 1; width: 3789px; left: 361.5px; ">
-        <div class="itemnode selected" id="DFDI43euYcPR">
-          <div class="thumb_outer">
-            <div class="thumb_inner">
-              <img width="240" height="184" src="/static/images/pic1.jpg" style="width: 240px; height: 184px; top: -92px; left: -120px; " class="thumb">
-              <img src="/static/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; ">
-            </div>
-          </div>
-          <div class="view_cont">
-            <div class="view" style="max-width: 540px; width: 540px; margin-top: -155.5px; top: 175.5px; ">
-              <div class="item_top" filename="Find the Dot.jpg-1" style="display: none; "></div>
-              <div class="image_outer">
-                <div class="image_caption_wrap" style="margin-left: -195.88888888888889px; width: 391.77777777777777px; max-width: 391.77777777777777px; ">
-                  <div class="image_inner" style="width: 393.77777777777777px; min-width: 393.77777777777777px; ">
-                    <img src="/static/images/pic1.jpg" class="image" style="display: block; width: 391.77777777777777px; height: 301px; "><img src="http://dgbc7tshfzi70.cloudfront.net/smedia/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "><div class="image_overlay"><div class="io_zoom_cont"><div class="io_zoom sprite"></div></div></div></div></div></div><div class="item_bottom" filename="Find the Dot.jpg-1"></div></div></div><div class="clear">&nbsp;</div></div><div class="itemnode" id="vK46AG6iXHhU"><div class="thumb_outer"><div class="thumb_inner"><img width="240" height="240" src="/static/images/pic2.jpg" style="width: 240px; height: 240px; top: -120px; left: -120px; " class="thumb"><img src="http://dgbc7tshfzi70.cloudfront.net/smedia/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "></div></div><div class="view_cont"><div class="view"><div class="item_top" filename="Dot Again.jpg-2" style="display: none; "></div><div class="image_outer"><div class="image_caption_wrap"><div class="image_inner"><img src="/static/images/pic3.jpg" class="image" style=""><img src="/static/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "><div class="image_overlay"><div class="io_zoom_cont"><div class="io_zoom sprite"></div></div></div></div></div></div><div class="item_bottom" filename="Dot Again.jpg-2"></div></div></div><div class="clear">&nbsp;</div></div><div class="itemnode" id="TPsbPSxc5vVX"><div class="thumb_outer"><div class="thumb_inner"><img width="219" height="240" src="/static/images/pic3.jpg" style="width: 219px; height: 240px; top: -120px; left: -109px; " class="thumb"><img src="/static/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "></div></div><div class="view_cont"><div class="view"><div class="item_top" filename="Look Likes buldging.jpg-3" style="display: none; "></div><div class="image_outer"><div class="image_caption_wrap"><div class="image_inner"><img src="/static/images/pic3.jpg" class="image" style=""><img src="http://dgbc7tshfzi70.cloudfront.net/smedia/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "><div class="image_overlay"><div class="io_zoom_cont"><div class="io_zoom sprite"></div></div></div></div></div></div>
-              <div class="item_bottom" filename="Look Likes buldging.jpg-3"></div>
-            </div>
-          </div>
-          <div class="clear">&nbsp;</div>
+      <div class="scene viewer_mode" id="scene_main" style="width: 3789px; opacity: 1; ">
+        <div class="vp_list_row vp_list_row_head">
+          <div class="vp_list_col vp_list_cell_title">Name</div>
+          <div class="vp_list_col vp_list_cell_viewer">&nbsp;</div>
+          <div class="vp_list_col vp_list_cell_size">Size</div>
+          <div class="vp_list_col vp_list_cell_views">Uploaded</div>
+          <div class="vp_list_col vp_list_cell_viewdl"></div>
         </div>
-      </div>
-      <span class="sprite arrowLeft" style="display: block; "></span>
-      <span class="sprite arrowRight" style="display: block; "></span>
+        <div class="scene_grid" id="scene_grid_cont" style="width: 660px; ">
+          <div id="scene_div_clear" class="clear"></div>
+        </div>
+        <div class="itemnode vp_list_row vp_list_row_default" id="DFDI43euYcPR" sortableid="0">
+          <div class="vp_list_cell vp_list_cell_title">
+            <span class="list-item-fileicon-container"><img src="/static/minus/images/file_icon_generic_picture.png"></span>
+            <span class="list-item-filename-display-container"><span>Find the Dot</span>.jpg</span>
+          </div>
+          <div class="vp_list_cell vp_list_cell_viewer">&nbsp;</div>
+          <div class="vp_list_cell vp_list_cell_size">29.2 KB</div>
+          <div class="vp_list_cell vp_list_cell_views">Oct. 3, 2011</div>
+          <div class="vp_list_cell vp_list_cell_viewdl">
+            <a class="btn btn_vieworiginal" target="_blank" href="/lDFDI43euYcPR" style="">View Original</a>
+          </div>
+        </div>
+        <div class="itemnode vp_list_row vp_list_row_default" id="vK46AG6iXHhU" sortableid="1">
+          <div class="vp_list_cell vp_list_cell_title">
+            <span class="list-item-fileicon-container"><img src="/static/minus/images/file_icon_generic_picture.png"></span>
+            <span class="list-item-filename-display-container"><span>Dot Again</span>.jpg</span>
+          </div>
+          <div class="vp_list_cell vp_list_cell_viewer">&nbsp;</div>
+          <div class="vp_list_cell vp_list_cell_size">79.5 KB</div>
+          <div class="vp_list_cell vp_list_cell_views">Oct. 3, 2011</div>
+          <div class="vp_list_cell vp_list_cell_viewdl">
+            <a class="btn btn_vieworiginal" target="_blank" href="/lvK46AG6iXHhU" style="">View Original</a>
+          </div>
+        </div>
+        <div class="itemnode vp_list_row vp_list_row_default" id="TPsbPSxc5vVX" sortableid="2">
+          <div class="vp_list_cell vp_list_cell_title">
+            <span class="list-item-fileicon-container"><img src="/static/minus/images/file_icon_generic_picture.png"></span>
+            <span class="list-item-filename-display-container"><span>Look Likes buldging</span>.jpg</span>
+          </div>
+          <div class="vp_list_cell vp_list_cell_viewer">&nbsp;</div>
+          <div class="vp_list_cell vp_list_cell_size">28.4 KB</div>
+          <div class="vp_list_cell vp_list_cell_views">Oct. 3, 2011</div>
+          <div class="vp_list_cell vp_list_cell_viewdl">
+            <a class="btn btn_vieworiginal" target="_blank" href="/lTPsbPSxc5vVX" style="">View Original</a>
+          </div>
+        </div>
+        <div id="fileupload" style="display:inline-block;width:100%;">
+          <div class="fileupload-content" style="padding:0px;">
+            <table class="files" style="margin:0px;"></table>
+            <!--
+            <div class="fileupload-progressbar"></div>
+            -->
+          </div>
+        </div>
+    <script id="template-upload" type="text/x-jquery-tmpl">
+        <div class="itemnode vp_list_row vp_list_row_default" id="TPsbPSxc5vVX" style="width:3789px;">
+          <div class="vp_list_cell vp_list_cell_title">
+            <span class="list-item-fileicon-container"><img src="/static/minus/images/file_icon_generic_picture.png"></span>
+            <span class="list-item-filename-display-container"><span>${name}</span></span>
+          </div>
+          <div class="vp_list_cell vp_list_cell_viewer">&nbsp;</div>
+          <div class="vp_list_cell vp_list_cell_size">${sizef}</div>
+          <div class="vp_list_cell vp_list_cell_views">Oct. 3, 2011</div>
+          <div class="vp_list_cell vp_list_cell_viewdl">
+            <a class="btn btn_vieworiginal" target="_blank" href="/lTPsbPSxc5vVX" style="">View Original</a>
+          </div>
+        </div>
+    </script>
+
     </div>
+    <span class="sprite arrowLeft" style="display: none; "></span><span class="sprite arrowRight" style="display: none; "></span></div>
+
+  <!--
+        /*
+      <tr class="template-upload{{ open_tv }}if error{{ close_tv }} ui-state-error{{ open_tv }}/if{{ close_tv }}">
+        <td class="preview"></td>
+        <td class="name">${name}</td>
+        <td class="size">${sizef}</td>
+        {{ open_tv }}if error{{ close_tv }}
+        <td class="error" colspan="2">Error:
+            {{ open_tv }}if error === 'maxFileSize'{{ close_tv }}File is too big
+            {{ open_tv }}else error === 'minFileSize'{{ close_tv }}File is too small
+            {{ open_tv }}else error === 'acceptFileTypes'{{ close_tv }}Filetype not allowed
+            {{ open_tv }}else error === 'maxNumberOfFiles'{{ close_tv }}Max number of files exceeded
+            {{ open_tv }}else{{ close_tv }}${error}
+            {{ open_tv }}/if{{ close_tv }}
+        </td>
+        {{ open_tv }}else{{ close_tv }}
+        <td class="progress">
+            <div></div>
+        </td>
+        <td class="start">
+            <button>Start</button>
+        </td>
+        {{ open_tv }}/if{{ close_tv }}
+        <td class="cancel">
+            <button>Cancel</button>
+        </td>
+      </tr>
+      */
+
+    <div id="fileupload">
+      <form action="{% url upload.views.Upload %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="fileupload-buttonbar">
+          <label class="fileinput-button">
+            <span>Add files...</span>
+            <input type="file" name="files[]" multiple>
+          </label>
+          <button type="submit" class="start">Start upload</button>
+          <button type="reset" class="cancel">Cancel upload</button>
+          <button type="button" class="delete">Delete files</button>
+        </div>
+      </form>
+      <div class="fileupload-content">
+        <table class="files"></table>
+        <div class="fileupload-progressbar"></div>
+      </div>
+    </div>
+    -->
 
     <!--
         Drag Indicator
@@ -267,13 +354,17 @@
         <div id="toolbar_left" class="content" style="float: left;">Your Personal File Home
           <span class="toolbar_links">
           &nbsp;|&nbsp; <a href="/pages/about">About</a>
-          &nbsp;|&nbsp; <a href="/">Blog</a>
-          &nbsp;|&nbsp; <a href="/">Forum</a>
+          &nbsp;|&nbsp; <a href="http://blog.minus.com">Blog</a>
+          &nbsp;|&nbsp; <a href="http://feedback.minus.com">Forum</a>
           &nbsp;|&nbsp; <a href="/pages/help">Help</a>
+          &nbsp;|&nbsp; <a href="/pages/jobs">Jobs</a>
+          &nbsp;|&nbsp; <a href="/pages/tos">Terms</a>
+          &nbsp;|&nbsp; <a href="/pages/api">API</a>
           &nbsp;|&nbsp; <a href="/pages/contact">Contact</a>
           </span>
         </div>
       </div>
     </div>
+
   </body>
 </html>
