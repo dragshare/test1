@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load i18n %}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>{% trans "Upload Demo" %}</title>
+<link rel="stylesheet" href="{{MEDIA_URL|default:"/static/"}}css/undo.css" type="text/css" media="screen" charset="utf-8"/>
+<link rel="stylesheet" href="{{MEDIA_URL|default:"/static/"}}css/main.css" type="text/css" media="screen" charset="utf-8"/>
+</head>
+<body>
+    <ul id="nav">
+    {% if user.is_authenticated %}
+    <li><a class="login" href="/account/logout/">Log out {{user}}</a></li>
+	{% if user.is_staff %}
+	<li><a href="/admin/">Site Administration</a></li>
+	{% endif %}
+    {% else %}
+	<li><a class="login" href="/account/login/{% ifnotequal request.path "/account/logout/" %}?next={{request.path|default:"/"}}{% endifnotequal %}">Log in</a></li>
+    {% endif %}
+	</ul>
+	<div class="clear"></div>
+	{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message|safe }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+	<div id="content">{% block content %}{% endblock %}</div>
+	{% block js %}{% endblock %}
+</body>
+</html>

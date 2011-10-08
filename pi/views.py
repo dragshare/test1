@@ -1,16 +1,21 @@
 import os
 from django.core.files.uploadedfile import UploadedFile
-from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect, HttpResponseBadRequest
 from django.utils.hashcompat import sha_constructor
 from django.shortcuts import render_to_response
 from django.core.context_processors import csrf
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.utils import simplejson 
+from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.template import RequestContext
+from django.core.cache import cache
 
-@csrf_exempt
+#@csrf_exempt
 def index(request):
-    return render_to_response('pi/index.html')
+    return render_to_response('index.html', RequestContext(request))
 
-@csrf_exempt
+#@csrf_exempt
 def file_upload(request):
     """
     Check that a file upload can be updated into the POST dictionary without
@@ -31,10 +36,30 @@ def file_upload(request):
     else:
         return HttpResponse('Please use POST')
 
-    return HttpResponse('success')
+    return HttpResponseRedirect(reverse('index'))
 
 
-@csrf_exempt
+def upload_progress(request):
+    """
+    Return JSON object with information about the progress of an upload.
+    """
+    progress_id = ''
+    if 'X-Progress-ID' in request.GET:
+        progress_id = request.GET['X-Progress-ID']
+    if 'HTTP_X_PROGRESS_ID' in request.META:
+        progress_id = request.META['HTTP_X_PROGRESS_ID']
+
+    if progress_id:
+        from django.utils import simplejson
+        cache_key = "%s_%s" % (request.META['REMOTE_ADDR'], progress_id)
+        data = cache.get(cache_key)
+        json = simplejson.dumps(data)
+        return HttpResponse(json)
+    else:
+        return HttpResponseBadRequest('Server Error: You must provide X-Progress-ID header or query param.')
+
+
+#@csrf_exempt
 def file_list(request):
     """
     List all files belonged to one user
@@ -59,10 +84,9 @@ def file_list(request):
     else:
         return HttpResponse('Please use GET')
 
-    return render_to_response('pi/index.html', {'tag_list': tags})
+    return render_to_response('index.html', {'tag_list': tags}, RequestContext(request))
 
 
-@csrf_exempt
 def file_read(request):
     """
     Read one file content
@@ -90,10 +114,9 @@ def file_read(request):
     else:
         return HttpResponse('Please use GET')
 
-    return render_to_response('pi/index.html', {'file_content': fcontent})
+    return render_to_response('index.html', {'file_content': fcontent}, RequestContext(request))
 
 
-@csrf_exempt
 def file_thumb(request):
     """
     Give a thumb of one file content
