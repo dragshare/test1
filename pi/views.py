@@ -23,8 +23,12 @@ def file_upload(request):
     """
 
     if request.method == 'POST':
+        print 'upload file -------------'
+        print len(request.FILES)
         upfile = request.FILES['upfile']
         user = request.user.username
+        print 'upload file name =========='
+        print upfile.name
         try:
             destfile = "/tmp/django/" + user + "/" + upfile.name
             dest = open(destfile, 'wb+')

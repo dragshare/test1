@@ -1,5 +1,6 @@
+{% load upload_tags %}
 <!DOCTYPE html>
-<html class="light ">
+<html class="light">
   <head>
     <meta charset="UTF-8">
     <title>Your Personal Online File Home</title>
@@ -10,22 +11,38 @@
     <link href="/static/css/x.css" rel="stylesheet">
     <link href="/static/css/n.css" rel="stylesheet">
     <link href="/static/css/d.css" rel="stylesheet">
+  </head>
 
     <!-- jQuery Javascript -->
+    <!--   
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/jquery-ui.min.js"></script>
-
+    -->
+<!--
+    <script src="{{ STATIC_URL }}jquery-1.6.2.min.js"></script>
+    <script src="{{ STATIC_URL }}jquery-ui-1.8.14.custom.min.js"></script>
+    <script src="{{ STATIC_URL }}jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script src="{{ STATIC_URL }}jquery.iframe-transport.js"></script>
+    <script src="{{ STATIC_URL }}jquery.fileupload.js"></script>
+    <script src="{{ STATIC_URL }}jquery.fileupload-ui.js"></script>
+    <script src="{{ STATIC_URL }}application.js"></script>
+    <script src="/static/js/jquery_fix_csrf.js"></script>
+-->
+    <script src="/static/js/jquery-1.6.3.min.js"></script>
+    <script src="/static/js/jquery-ui-1.8.16.custom.min.js"></script>
     <!-- jQuery Templates -->
     <script src="/static/js/jquery.tmpl.min.js"></script>
-
-    <!-- Fixing CSRF in Django for jQuery -->
-    <script src="/static/js/jquery_fix_csrf.js"></script>
 
     <!-- jQuery Upload files -->
     <script src="/static/js/jquery.iframe-transport.js"></script>
     <script src="/static/js/jquery.fileupload.js"></script>
     <script src="/static/js/jquery.fileupload-ui.js"></script>
+    <script src="/static/js/application.js"></script>
 
+    <!-- Fixing CSRF in Django for jQuery -->
+    <script src="/static/js/jquery_fix_csrf.js"></script>
+
+<!---
     <script type="text/javascript">
         $(function() {
             'use strict';
@@ -67,8 +84,7 @@
 
         });
     </script>
-  </head>
-
+-->
   <body id="site_body" class="light compact_view gallery_view list_view">
     <div class="head">
       <div class="header" role="navigation">
@@ -190,7 +206,7 @@
               <div class="image_outer">
                 <div class="image_caption_wrap" style="margin-left: -195.88888888888889px; width: 391.77777777777777px; max-width: 391.77777777777777px; ">
                   <div class="image_inner" style="width: 393.77777777777777px; min-width: 393.77777777777777px; ">
-                    <img src="/static/images/pic1.jpg" class="image" style="display: block; width: 391.77777777777777px; height: 301px; "><img src="http://dgbc7tshfzi70.cloudfront.net/smedia/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "><div class="image_overlay"><div class="io_zoom_cont"><div class="io_zoom sprite"></div></div></div></div></div></div><div class="item_bottom" filename="Find the Dot.jpg-1"></div></div></div><div class="clear">&nbsp;</div></div><div class="itemnode" id="vK46AG6iXHhU"><div class="thumb_outer"><div class="thumb_inner"><img width="240" height="240" src="/static/images/pic2.jpg" style="width: 240px; height: 240px; top: -120px; left: -120px; " class="thumb"><img src="http://dgbc7tshfzi70.cloudfront.net/smedia/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "></div></div><div class="view_cont"><div class="view"><div class="item_top" filename="Dot Again.jpg-2" style="display: none; "></div><div class="image_outer"><div class="image_caption_wrap"><div class="image_inner"><img src="/static/images/pic3.jpg" class="image" style=""><img src="/static/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "><div class="image_overlay"><div class="io_zoom_cont"><div class="io_zoom sprite"></div></div></div></div></div></div><div class="item_bottom" filename="Dot Again.jpg-2"></div></div></div><div class="clear">&nbsp;</div></div><div class="itemnode" id="TPsbPSxc5vVX"><div class="thumb_outer"><div class="thumb_inner"><img width="219" height="240" src="/static/images/pic3.jpg" style="width: 219px; height: 240px; top: -120px; left: -109px; " class="thumb"><img src="/static/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "></div></div><div class="view_cont"><div class="view"><div class="item_top" filename="Look Likes buldging.jpg-3" style="display: none; "></div><div class="image_outer"><div class="image_caption_wrap"><div class="image_inner"><img src="/static/images/pic3.jpg" class="image" style=""><img src="http://dgbc7tshfzi70.cloudfront.net/smedia/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "><div class="image_overlay"><div class="io_zoom_cont"><div class="io_zoom sprite"></div></div></div></div></div></div>
+                    <img src="/static/images/pic1.jpg" class="image" style="display: block; width: 391.77777777777777px; height: 301px; "><div class="image_overlay"><div class="io_zoom_cont"><div class="io_zoom sprite"></div></div></div></div></div></div><div class="item_bottom" filename="Find the Dot.jpg-1"></div></div></div><div class="clear">&nbsp;</div></div><div class="itemnode" id="vK46AG6iXHhU"><div class="thumb_outer"><div class="thumb_inner"><img width="240" height="240" src="/static/images/pic2.jpg" style="width: 240px; height: 240px; top: -120px; left: -120px; " class="thumb"></div></div><div class="view_cont"><div class="view"><div class="item_top" filename="Dot Again.jpg-2" style="display: none; "></div><div class="image_outer"><div class="image_caption_wrap"><div class="image_inner"><img src="/static/images/pic3.jpg" class="image" style=""><img src="/static/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "><div class="image_overlay"><div class="io_zoom_cont"><div class="io_zoom sprite"></div></div></div></div></div></div><div class="item_bottom" filename="Dot Again.jpg-2"></div></div></div><div class="clear">&nbsp;</div></div><div class="itemnode" id="TPsbPSxc5vVX"><div class="thumb_outer"><div class="thumb_inner"><img width="219" height="240" src="/static/images/pic3.jpg" style="width: 219px; height: 240px; top: -120px; left: -109px; " class="thumb"><img src="/static/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; "></div></div><div class="view_cont"><div class="view"><div class="item_top" filename="Look Likes buldging.jpg-3" style="display: none; "></div><div class="image_outer"><div class="image_caption_wrap"><div class="image_inner"><img src="/static/images/pic3.jpg" class="image" style=""><div class="image_overlay"><div class="io_zoom_cont"><div class="io_zoom sprite"></div></div></div></div></div></div>
               <div class="item_bottom" filename="Look Likes buldging.jpg-3"></div>
             </div>
           </div>
@@ -200,10 +216,8 @@
       <span class="sprite arrowLeft" style="display: block; "></span>
       <span class="sprite arrowRight" style="display: block; "></span>
     </div>
-
     <!--
         Drag Indicator
-    -->
     <div id="drag_indicator" style="display:none;">
       <div class="bg"></div>
       <div class="inside">
@@ -216,50 +230,30 @@
         </div>
       </div>
     </div>
-
-    <!--
-    <script id="template-download" type="text/x-jquery-tmpl">
-      <tr class="template-download{{ open_tv }}if error{{ close_tv }} ui-state-error{{ open_tv }}/if{{ close_tv }}">
-        {{ open_tv }}if error{{ close_tv }}
-        <td></td>
-        <td class="name">${name}</td>
-        <td class="size">${sizef}</td>
-        <td class="error" colspan="2">Error:
-            {{ open_tv }}if error === 1{{ close_tv }}File exceeds upload_max_filesize (php.ini directive)
-            {{ open_tv }}else error === 2{{ close_tv }}File exceeds MAX_FILE_SIZE (HTML form directive)
-            {{ open_tv }}else error === 3{{ close_tv }}File was only partially uploaded
-            {{ open_tv }}else error === 4{{ close_tv }}No File was uploaded
-            {{ open_tv }}else error === 5{{ close_tv }}Missing a temporary folder
-            {{ open_tv }}else error === 6{{ close_tv }}Failed to write file to disk
-            {{ open_tv }}else error === 7{{ close_tv }}File upload stopped by extension
-            {{ open_tv }}else error === 'maxFileSize'{{ close_tv }}File is too big
-            {{ open_tv }}else error === 'minFileSize'{{ close_tv }}File is too small
-            {{ open_tv }}else error === 'acceptFileTypes'{{ close_tv }}Filetype not allowed
-            {{ open_tv }}else error === 'maxNumberOfFiles'{{ close_tv }}Max number of files exceeded
-            {{ open_tv }}else error === 'uploadedBytes'{{ close_tv }}Uploaded bytes exceed file size
-            {{ open_tv }}else error === 'emptyResult'{{ close_tv }}Empty file upload result
-            {{ open_tv }}else{{ close_tv }}${error}
-            {{ open_tv }}/if{{ close_tv }}
-        </td>
-        {{ open_tv }}else{{ close_tv }}
-        <td class="preview">
-            {{ open_tv }}if thumbnail_url{{ close_tv }}
-            <a href="${url}" target="_blank"><img src="${thumbnail_url}"></a>
-            {{ open_tv }}/if{{ close_tv }}
-        </td>
-        <td class="name">
-            <a href="${url}" {{ open_tv }}if thumbnail_url{{ close_tv }}
-               target="_blank"{{ open_tv }}/if{{ close_tv }}>${name}</a>
-        </td>
-        <td class="size">${sizef}</td>
-        <td colspan="2"></td>
-        {{ open_tv }}/if{{ close_tv }}
-        <td class="delete">
-            <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
-        </td>
-      </tr>
-    </script>
     -->
+
+    <div id="fileupload">
+      <form action="{% url file_upload %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="fileupload-buttonbar">
+          <label class="fileinput-button">
+            <span>Add files...</span>
+            <input type="file" name="upfile" multiple>
+          </label>
+<!--
+          <button type="submit" class="start">Start upload</button>
+          <button type="reset" class="cancel">Cancel upload</button>
+          <button type="button" class="delete">Delete files</button>
+-->
+        </div>
+      </form>
+      <div class="fileupload-content">
+        <table class="files"></table>
+        <div class="fileupload-progressbar"></div>
+      </div>
+    </div>
+
+{% upload_js %}
 
     <!-- Footer -->
     <div id="toolbar_container" class="global_footer">
