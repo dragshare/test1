@@ -18,7 +18,6 @@ $(function () {
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload();
 /*    $('#fileupload').fileupload({
-        alert("call fileupload");
         // this formData is neccessary to pass the csrf and pass uid to django
         formData: [
             { name: "uid", value: "{{ uid }}"},
@@ -26,7 +25,7 @@ $(function () {
         ],
         maxFileSize: {{ maxfilesize }},
         minFileSize: {{ minfilesize }},
-        sequentialUploads: true,
+        sequentialUploads: true
     });
 */
     // Load existing files:

@@ -11,6 +11,12 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.core.cache import cache
 
+def response_mimetype(request):
+    if "application/json" in request.META['HTTP_ACCEPT']:
+        return "application/json"
+    else:
+        return "text/plain"
+
 #@csrf_exempt
 def index(request):
     return render_to_response('index.html', RequestContext(request))
@@ -30,7 +36,7 @@ def file_upload(request):
         print 'upload file name =========='
         print upfile.name
         try:
-            destfile = "/tmp/django/" + user + "/" + upfile.name
+            destfile = settings.MEDIA_UPLOAD_FILES_ROOT + user + "/" + upfile.name
             dest = open(destfile, 'wb+')
             for chunk in upfile.chunks():
                 dest.write(chunk)
@@ -40,7 +46,11 @@ def file_upload(request):
     else:
         return HttpResponse('Please use POST')
 
-    return HttpResponseRedirect(reverse('index'))
+    data = [{'name': upfile.name}]
+    response = JSONResponse(data, {}, response_mimetype(request))
+    response['Content-Disposition'] = 'inline; filename=files.json'
+    return response
+#    return HttpResponseRedirect(reverse('index'))
 
 
 def upload_progress(request):
@@ -71,11 +81,14 @@ def file_list(request):
 
     tags = []
 
+    print "listing file"
     if request.method == 'GET':
         user = request.user.username
         if request.GET.has_key('tag_list_name'):
             tag_list_name = request.GET['tag_list_name']
-            dest_dir = '/tmp/django/'
+            print "tag list name "
+            print tag_list_name
+            dest_dir = settings.MEDIA_UPLOAD_FILES_ROOT
             if user is None:
                 dest_dir += user + '/'
             dest_dir += tag_list_name
@@ -88,7 +101,14 @@ def file_list(request):
     else:
         return HttpResponse('Please use GET')
 
-    return render_to_response('index.html', {'tag_list': tags}, RequestContext(request))
+    contents = ''
+    for tag in tags:
+        print tag
+        contents = contents + '<img src=' + settings.MEDIA_UPLOAD_FILE_URL + tag + '>'
+    print contents
+    return HttpResponse(contents);
+#    return HttpResponse(simplejson.dumps(tags))
+#    return render_to_response('index.html', {'tag_list': tags}, RequestContext(request))
 
 
 def file_read(request):
@@ -98,11 +118,12 @@ def file_read(request):
 
     fcontent = ''
 
+    print 'reading file'
     if request.method == 'GET':
         user = request.user.username
         if request.GET.has_key('file_name'):
             file_name = request.GET['file_name']
-            dest_file = '/tmp/django/'
+            dest_file = settings.MEDIA_UPLOAD_FILES_ROOT
             if user is None:
                 dest_file += user + '/'
             dest_file += file_name
@@ -118,7 +139,8 @@ def file_read(request):
     else:
         return HttpResponse('Please use GET')
 
-    return render_to_response('index.html', {'file_content': fcontent}, RequestContext(request))
+    return HttpResponse(fcontent)
+#    return render_to_response('index.html', {'file_content': fcontent}, RequestContext(request))
 
 
 def file_thumb(request):
@@ -127,4 +149,14 @@ def file_thumb(request):
     """
 
     return HttpResponse()
+
+
+class JSONResponse(HttpResponse):
+    """JSON response class."""
+    def __init__(self,obj='',json_opts={},mimetype="application/json",*args,**kwargs):
+        content = simplejson.dumps(obj,**json_opts)
+        print 'content in JSON resp'
+        print content
+        print mimetype
+        super(JSONResponse,self).__init__(content,mimetype,*args,**kwargs)
 

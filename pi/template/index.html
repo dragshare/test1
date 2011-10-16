@@ -31,8 +31,8 @@
 -->
     </head>
 
-
-    <body>
+<!--    <body onload="loadFile()"> -->
+        <body>
         <h1>list file</h1>
 <!--        <form action="/list/" method="GET">{% csrf_token %} -->
         <form action="/list/" method="GET">
@@ -79,9 +79,11 @@
             </div>
         </div>
 
+        <div id="imgview">image views:</div>
+
         <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.js"></script>
         <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.uploadProgress.js"></script>
-        <script type="text/javascript" charset="utf-8">
+<!--        <script type="text/javascript" charset="utf-8">
         //<![CDATA[
         $(document).ready(function() { 
             $(function() {
@@ -114,7 +116,21 @@
         });
         //]]>
         </script>
- 
+-->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                alert("load..");
+//                $("#fileCont").load('/file/?file_name=da1');
+//                $("#listDiv").load('/list/?tag_list_name=', 
+//                $.get('/file/?file_name=da1', function(data) {
+                $.get('/list/?tag_list_name=', function(data) {
+                    alert(data);
+                    $('body').append(data);
+                    $('#imgview').append(data);
+                });
+            });
+        </script>
+
     </body>
 
 </html>

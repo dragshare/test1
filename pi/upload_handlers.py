@@ -48,7 +48,6 @@ class UploadProgressCachedHandler(MemoryFileUploadHandler):
 
     def upload_complete(self):
         print 'upload complete'
-#        if self.cache_key:
-#            cache.delete(self.cache_key)
+        if self.cache_key:
+            cache.delete(self.cache_key)
         pass
-

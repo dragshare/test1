@@ -247,10 +247,13 @@
 -->
         </div>
       </form>
+      <div class="fileupload-progressbar"></div>
+<!--
       <div class="fileupload-content">
         <table class="files"></table>
         <div class="fileupload-progressbar"></div>
       </div>
+-->
     </div>
 
 {% upload_js %}
