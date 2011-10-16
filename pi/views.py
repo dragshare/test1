@@ -22,6 +22,10 @@ def index(request):
     return render_to_response('index.html', RequestContext(request))
 
 #@csrf_exempt
+def new(request):
+    return render_to_response('index_new.html', RequestContext(request))
+
+#@csrf_exempt
 def file_upload(request):
     """
     Check that a file upload can be updated into the POST dictionary without

@@ -49,4 +49,39 @@ $(function () {
             .appendTo('body');
     });
 
+    var side_menu_status = 'minimized';
+    $('.viewport_minmax_button').click(function() {
+      if (side_menu_status == 'minimized') {
+        $(this).removeClass('minimized').addClass('maximized');
+        $('.viewport_sidemenu_container').fadeIn();
+        side_menu_status = 'maximized';
+      } else {
+        $(this).removeClass('maximized').addClass('minimized');
+        $('.viewport_sidemenu_container').fadeOut();
+        side_menu_status = 'minimized';
+      }
+    });
+
+    $('*[option_description]').mouseover(function() {
+
+    });
+
+    $('.vm_list').click(function() {
+      $('.details_container').hide();
+      $('.viewport_minmax_container').hide();
+      $('#scene_main').hide();
+      $('#scene_main_1').show();
+      $('.arrowLeft').hide();
+      $('.arrowRight').hide();
+    });
+
+    $('.vm_linear').click(function() {
+      $('.details_container').show();
+      $('.viewport_minmax_container').show();
+      $('#scene_main').show();
+      $('#scene_main_1').hide();
+      $('.arrowLeft').show();
+      $('.arrowRight').show();
+    });
+
 });
