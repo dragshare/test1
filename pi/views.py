@@ -90,16 +90,24 @@ def file_list(request):
         user = request.user.username
         if request.GET.has_key('tag_list_name'):
             tag_list_name = request.GET['tag_list_name']
-            print "tag list name "
-            print tag_list_name
             dest_dir = settings.MEDIA_UPLOAD_FILES_ROOT
-            if user is None:
-                dest_dir += user + '/'
-            dest_dir += tag_list_name
+            user_tag = ''
+            if user:
+                user_tag += user + '/'
+            if tag_list_name:
+                user_tag += tag_list_name + '/'
+            dest_dir += user_tag
             try: 
                  tags = os.listdir(dest_dir)
             except:
                 return HttpResponse('fail to list')
+        
+            dataUrl = settings.MEDIA_UPLOAD_FILE_URL + user_tag
+            datas = []
+            for tag in tags:
+                data = [{'url': dataUrl + tag, 'caption': tag}]
+                datas = datas + data
+            print simplejson.dumps(datas)
         else:
             return HttpResponse('Please specify tag list name')
     else:
@@ -110,8 +118,9 @@ def file_list(request):
         print tag
         contents = contents + '<img src=' + settings.MEDIA_UPLOAD_FILE_URL + tag + '>'
     print contents
-    return HttpResponse(contents);
-#    return HttpResponse(simplejson.dumps(tags))
+#    return HttpResponse(contents);
+    print simplejson.dumps(tags)
+    return HttpResponse(simplejson.dumps(tags))
 #    return render_to_response('index.html', {'tag_list': tags}, RequestContext(request))
 
 

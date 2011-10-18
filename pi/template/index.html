@@ -27,47 +27,33 @@
                 height: 4px;
             }
         </style>
-<!--
--->
     </head>
 
-<!--    <body onload="loadFile()"> -->
         <body>
         <h1>list file</h1>
 <!--        <form action="/list/" method="GET">{% csrf_token %} -->
-        <form action="/list/" method="GET">
-            Enter Gallary/Tag: <input type="text" name="tag_list_name">
-            <input type="submit" value="List"/>
+        <form id="listFileForm" action="/list/" method="GET">
+            Enter Gallary/Tag: <input type="text" name="tag_list_name" id="tagListName">
+            <input type="submit" id="listFile" value="List"/>
         </form>
 
-        {% if tag_list %}
-        <div id="listDiv">
-            tags:
-            {% for tag_name in tag_list %}
-            {{ tag_name }} 
-            {% endfor %}
-        </div>
-        {% endif %}
+        <div id="listDiv">tags:</div>
 
 
         <h1>read file</h1>
 <!--        <form action="/file/" method="GET">{% csrf_token %} -->
-        <form action="/file/" method="GET">
-            Enter tag + file name: <input type="text" name="file_name">
+        <form id="readFileForm" action="/file/" method="GET">
+            Enter tag + file name: <input type="text" name="file_name" id="rFileName">
             <input type="submit" value="Read"/>
         </form>
 
-        {% if file_content %}
-        <div id="fileCont">
-            {{ file_content }}
-        </div>
-        {% endif %}
+        <div id="fileContDiv"></div>
 
 
         <h1>upload file</h1>
         <div>
-<!--        <form id="upload_form" enctype="multipart/form-data" action="/upload/" method="POST">{% csrf_token %} -->
-        <form id="upload_form" enctype="multipart/form-data" action="/upload/" method="POST">
+        <form id="upload_form" enctype="multipart/form-data" action="/upload/" method="POST">{% csrf_token %}
+<!--        <form id="upload_form" enctype="multipart/form-data" action="/upload/" method="POST">-->
             <input type="file" name="upfile" id="up_file"/>
             <input type="submit" value="Submit"/>
         </form>
@@ -79,13 +65,49 @@
             </div>
         </div>
 
-        <div id="imgview">image views:</div>
+        <div id="imgViewDiv">image views:</div>
 
         <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.js"></script>
         <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.uploadProgress.js"></script>
-<!--        <script type="text/javascript" charset="utf-8">
-        //<![CDATA[
+
+        <script type="text/javascript" charset="utf-8">
         $(document).ready(function() { 
+
+//                $.get('/file/?file_name=da1', function(data) {
+            $.get('/list/?tag_list_name=', function(data) {
+                $('#imgViewDiv').append(data);
+            });
+
+            /* attach a submit handler to the form */
+            $("#listFileForm").submit(function(event) {
+                /* stop form from submitting normally */
+                event.preventDefault(); 
+
+                /* get some values from elements on the page: */
+                var $form = $(this),
+                term = $form.find('#tagListName').val(),
+                url = $form.attr('action');
+
+                /* Send the data using post and put the results in a div */
+                $.get(url, {'tag_list_name' : term},
+                      function(data) { $("#listDiv").empty(); $("#listDiv").append(data); });
+            });
+
+            $("#readFileForm").submit(function(event) {
+                /* stop form from submitting normally */
+                event.preventDefault(); 
+
+                /* get some values from elements on the page: */
+                var $form = $(this),
+                term = $form.find('#rFileName').val(),
+                url = $form.attr('action');
+
+                /* Send the data using post and put the results in a div */
+                $.get(url, {'file_name' : term},
+                      function(data) { $("#fileContDiv").empty(); $("#fileContDiv").append(data); });
+            });
+
+            // show upload progress
             $(function() {
                 $('#upload_form').uploadProgress({
                     jqueryPath: "{{MEDIA_URL}}js/jquery.js",
@@ -110,25 +132,10 @@
                         $("#progress_filename").html('complete ' + filename + "...");
                         $("#progress_container").show();
                     },
-                    interval: 20
+                    interval: 2000
                 });
             });
         });
-        //]]>
-        </script>
--->
-        <script type="text/javascript">
-            $(document).ready(function(){
-                alert("load..");
-//                $("#fileCont").load('/file/?file_name=da1');
-//                $("#listDiv").load('/list/?tag_list_name=', 
-//                $.get('/file/?file_name=da1', function(data) {
-                $.get('/list/?tag_list_name=', function(data) {
-                    alert(data);
-                    $('body').append(data);
-                    $('#imgview').append(data);
-                });
-            });
         </script>
 
     </body>
