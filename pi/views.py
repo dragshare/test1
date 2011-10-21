@@ -33,20 +33,26 @@ def file_upload(request):
     """
 
     if request.method == 'POST':
-        print 'upload file -------------'
-        print len(request.FILES)
         upfile = request.FILES['upfile']
-        user = request.user.username
-        print 'upload file name =========='
-        print upfile.name
+
+        user_tag = ''
+        if request.user.username: 
+            user_tag += request.user.username + '/'
+
         try:
-            destfile = settings.MEDIA_UPLOAD_FILES_ROOT + user + "/" + upfile.name
+            destfile = settings.MEDIA_UPLOAD_FILES_ROOT + user_tag + upfile.name
             dest = open(destfile, 'wb+')
             for chunk in upfile.chunks():
                 dest.write(chunk)
             dest.close()
         except:
             return HttpResponse('fail to upload')
+
+        dataUrl = settings.MEDIA_UPLOAD_FILE_URL + user_tag
+        data = [{'url': dataUrl + upfile.name, 'name': upfile.name}]
+        response = JSONResponse(data, {}, response_mimetype(request))
+        response['Content-Disposition'] = 'inline; filename=files.json'
+        return response
     else:
         return HttpResponse('Please use POST')
 
@@ -85,7 +91,6 @@ def file_list(request):
 
     tags = []
 
-    print "listing file"
     if request.method == 'GET':
         user = request.user.username
         if request.GET.has_key('tag_list_name'):
@@ -105,22 +110,21 @@ def file_list(request):
             dataUrl = settings.MEDIA_UPLOAD_FILE_URL + user_tag
             datas = []
             for tag in tags:
-                data = [{'url': dataUrl + tag, 'caption': tag}]
+                data = [{'url': dataUrl + tag, 'name': tag}]
                 datas = datas + data
             print simplejson.dumps(datas)
+            return JSONResponse(datas)
+#            return HttpResponse(simplejson.dumps(datas))
         else:
             return HttpResponse('Please specify tag list name')
     else:
         return HttpResponse('Please use GET')
 
-    contents = ''
+    contents = []
     for tag in tags:
-        print tag
-        contents = contents + '<img src=' + settings.MEDIA_UPLOAD_FILE_URL + tag + '>'
-    print contents
-#    return HttpResponse(contents);
-    print simplejson.dumps(tags)
-    return HttpResponse(simplejson.dumps(tags))
+        contents = contents + ['<img src=' + settings.MEDIA_UPLOAD_FILE_URL + tag + '>']
+    return HttpResponse(simplejson.dumps(contents));
+#    return HttpResponse(simplejson.dumps(tags))
 #    return render_to_response('index.html', {'tag_list': tags}, RequestContext(request))
 
 

@@ -1,35 +1,65 @@
+{% load upload_tags %}
+<!DOCTYPE html>
 <html>
     <head>
         <title>File upload</title>
-        <style type="text/css">
-            #progress_container {
-                font-size: .9em;
-                width: 100%;
-                height: 1.25em;
-                position: relative;
-                margin: 3em 0;
-                display: none;
-            }
 
-            #progress_filename {
-                font-size: .9em;
-                width: 100%;
-            }
+        <!-- Some CSS for the jQuery uploader UI -->
+        <link href="/static/css/jquery-ui.css" rel="stylesheet" id="theme">
+        <link href="/static/css/jquery.fileupload-ui.css" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/slides.css">
 
-            #progress_bar {
-                width: 100%;
-                border: 1px solid #999;
-            }
+        <!-- jQuery Javascript -->
+        <script src="/static/js/jquery-1.6.3.min.js"></script>
+        <script src="/static/js/jquery-ui-1.8.16.custom.min.js"></script>
 
-            #progress_indicator {
-                background: #8a9;
-                width: 0;
-                height: 4px;
-            }
-        </style>
+        <!-- jQuery Templates -->
+        <script src="/static/js/jquery.tmpl.min.js"></script>
+
+        <!-- jQuery Upload files -->
+        <script src="/static/js/jquery.iframe-transport.js"></script>
+        <script src="/static/js/jquery.fileupload.js"></script>
+        <script src="/static/js/jquery.fileupload-ui.js"></script>
+        <script src="/static/js/appSlides.js"></script>
+
+        <!-- Fixing CSRF in Django for jQuery -->
+        <script src="/static/js/jquery_fix_csrf.js"></script>
+
+        <script src="/static/js/slides.js"></script>
+
+        <!--
+        <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.uploadProgress.js"></script>
+        -->
     </head>
 
-        <body>
+    <body>
+        <!-- SlideJS container start -->
+        <div id="slidesCont">
+            <div id="slides">
+            </div>
+        </div>
+        <!-- SlideJS container end -->
+
+        <!-- file upload start -->
+        <div id="fileupload">
+            <form action="{% url file_upload %}" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+                <div class="fileupload-buttonbar">
+                    <label class="fileinput-button">
+                        <span>Add files</span>
+                        <input type="file" name="upfile" multiple>
+                    </label>
+                </div>
+            </form>
+            <div class="fileupload-content">
+                <table class="files"></table>
+                <div class="fileupload-progressbar"></div>
+            </div>
+        </div>
+        <!-- file upload end -->
+
+
         <h1>list file</h1>
 <!--        <form action="/list/" method="GET">{% csrf_token %} -->
         <form id="listFileForm" action="/list/" method="GET">
@@ -67,76 +97,7 @@
 
         <div id="imgViewDiv">image views:</div>
 
-        <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.js"></script>
-        <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.uploadProgress.js"></script>
-
-        <script type="text/javascript" charset="utf-8">
-        $(document).ready(function() { 
-
-//                $.get('/file/?file_name=da1', function(data) {
-            $.get('/list/?tag_list_name=', function(data) {
-                $('#imgViewDiv').append(data);
-            });
-
-            /* attach a submit handler to the form */
-            $("#listFileForm").submit(function(event) {
-                /* stop form from submitting normally */
-                event.preventDefault(); 
-
-                /* get some values from elements on the page: */
-                var $form = $(this),
-                term = $form.find('#tagListName').val(),
-                url = $form.attr('action');
-
-                /* Send the data using post and put the results in a div */
-                $.get(url, {'tag_list_name' : term},
-                      function(data) { $("#listDiv").empty(); $("#listDiv").append(data); });
-            });
-
-            $("#readFileForm").submit(function(event) {
-                /* stop form from submitting normally */
-                event.preventDefault(); 
-
-                /* get some values from elements on the page: */
-                var $form = $(this),
-                term = $form.find('#rFileName').val(),
-                url = $form.attr('action');
-
-                /* Send the data using post and put the results in a div */
-                $.get(url, {'file_name' : term},
-                      function(data) { $("#fileContDiv").empty(); $("#fileContDiv").append(data); });
-            });
-
-            // show upload progress
-            $(function() {
-                $('#upload_form').uploadProgress({
-                    jqueryPath: "{{MEDIA_URL}}js/jquery.js",
-                    progressBar: '#progress_indicator',
-                    progressUrl: '{% url upload_progress %}',
-                    start: function() {
-                        $("#upload_form").hide();
-                        filename = $("#up_file").val().split(/[\/\\]/).pop();
-                        $("#progress_filename").html('Uploading ' + filename + "...");
-                        $("#progress_container").show();
-                    },
-                    uploadProgressPath: "{{MEDIA_URL}}js/jquery.uploadProgress.js",
-                    uploading: function(upload) {
-                        if (upload.percents == 100) {
-                            window.clearTimeout(this.timer);
-                            $("#progress_filename").html('Processing ' + filename + "...");
-                        } else {
-                            $("#progress_filename").html('Uploading ' + filename + ': ' + upload.percents + '%');
-                        }
-                    },
-                    complete: function() {
-                        $("#progress_filename").html('complete ' + filename + "...");
-                        $("#progress_container").show();
-                    },
-                    interval: 2000
-                });
-            });
-        });
-        </script>
+        {% upload_js %}
 
     </body>
 
