@@ -26,6 +26,7 @@
     <script src="/static/js/jquery.iframe-transport.js"></script>
     <script src="/static/js/jquery.fileupload.js"></script>
     <script src="/static/js/jquery.fileupload-ui.js"></script>
+    <script src="/static/js/slides.js"></script>
     <script src="/static/js/application.js"></script>
 
     <!-- Fixing CSRF in Django for jQuery -->
@@ -65,8 +66,12 @@
     <!-- gallery wrapper panel BEGIN -->
     <div class="gallery_wrapper">
       <div class="subheader_container" id="gallery_editor_header">
+
+        <!-- Left Side Begin -->
         <div class="subheader_leftside">
+
           <h1 class="subheader_galleryname" style="float:left; margin-top:0px;">All Files</h1>
+
           <div id="globalsearch" style="float:left; margin-left:20px;">
             <form action="/search" method="get" class="search" id="g-search">
               <div class="sp-label">
@@ -84,6 +89,9 @@
             <div id="sp-results"></div>
           </div>
         </div>
+        <!-- Left Side End -->
+
+        <!-- Right Side Begin -->
         <div class="subheader_rightside">
           <span class="subheader_vb"></span>
           <div class="subheader_viewinfo">
@@ -96,36 +104,21 @@
               <li><a class="vm_theme" option_description="Lights Off"></a></li></ul>
           </div>
         </div>
+        <!-- Right Side End -->
+
       </div>
     </div>
     <!-- gallery wrapper panel END -->
 
-
     <div class="clear"></div>
 
-    <!-- Linear View File Details BEGIN -->
-    <div class="details_container">
-      <h2 class="subheader_filename">Find the Dot.jpg</h2>
-      <a class="btn btn_vieworiginal" target="_blank" id="details_view_dl_btn" href="/lDFDI43euYcPR">View Original</a>
-      <div class="details_stats" style="display: block; ">
-        <p class="subheader_pager"><span id="pager_current_number">1</span> of <span id="pager_total_number">3</span></p>
-        <span class="details_vb"></span>
-        <p class="details_stat">6 Views</p><span class="details_vb"></span><p class="details_stat">29.2 KB</p>
-      </div>
-      <div class="clear"></div>
-      <p class="description">Can You find where the dot is? Look into the white circles.</p>
-      <div class="clear"></div>
-    </div>
-    <!-- Linear View File Details BEGIN -->
-
-    <!-- Linear View File Thumb BEGIN -->
     <div class="viewport_container" id="presenter_main" style="height: 300px; ">
 
+      <!-- Side Menu BEGIN -->
       <div class="viewport_minmax_container" id="gallery_menu_minmax">
         <div class="viewport_minmax_button minimized" option_description="Show Menu"></div>
       </div>
 
-      <!-- Side menu BEGIN -->
       <div class="viewport_sidemenu_container viewer_mode" id="dm-gallery-menu" style="display: none; ">
         <div class="viewport_sidemenu_section viewport_sidemenu_explorer" id="sidemenu_explorer">
           <h3>Tags</h3>
@@ -143,7 +136,7 @@
                   </div>
                 </li>
               </ul>
-           </div>
+            </div>
           </div>
         </div>
         <div class="viewport_sidemenu_section viewport_sidemenu_shortlink" id="sidemenu_shortlink">
@@ -159,100 +152,18 @@
           </div>
         </div>
       </div>
-      <!-- Side menu END -->
+      <!-- Side Menu END -->
 
+      <!-- Linear View File Thumb BEGIN -->
+      <div class="scene viewer_mode" id="scene_main" style="opacity: 1; width: 100%; z-index=90;">
+      </div>
+      <!-- Linear View File Thumb END -->
 
-      <!-- Linear View Panel BEGIN -->
-      <div class="scene viewer_mode" id="scene_main" style="opacity: 1; width: 3789px; left: 361.5px; ">
-        <div class="itemnode selected" id="DFDI43euYcPR">
-          <div class="thumb_outer">
-            <div class="thumb_inner">
-              <img width="240" height="184" src="/static/images/pic1.jpg" style="width: 240px; height: 184px; top: -92px; left: -120px; " class="thumb">
-              <img src="/static/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; ">
-            </div>
-          </div>
-          <div class="view_cont">
-            <div class="view" style="max-width: 540px; width: 540px; margin-top: -155.5px; top: 175.5px; ">
-              <div class="item_top" filename="Find the Dot.jpg-1" style="display: block; "></div>
-              <div class="image_outer">
-                <div class="image_caption_wrap" style="margin-left: -195.88888888888889px; width: 391.77777777777777px; max-width: 391.77777777777777px; ">
-                  <div class="image_inner" style="width: 393.77777777777777px; min-width: 393.77777777777777px; ">
-                    <img src="/static/images/pic1.jpg" class="image" style="display: block; width: 391.77777777777777px; height: 301px; ">
-                    <div class="image_overlay">
-                      <div class="io_zoom_cont">
-                        <div class="io_zoom sprite"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item_bottom" filename="Find the Dot.jpg-1"></div>
-            </div>
-          </div>
-          <div class="clear">&nbsp;</div>
-        </div>
-        <div class="itemnode" id="vK46AG6iXHhU">
-          <div class="thumb_outer">
-            <div class="thumb_inner">
-              <img width="240" height="240" src="/static/images/pic2.jpg" style="width: 240px; height: 240px; top: -120px; left: -120px; " class="thumb">
-            </div>
-          </div>
-          <div class="view_cont">
-            <div class="view">
-              <div class="item_top" filename="Dot Again.jpg-2" style="display: none; "></div>
-              <div class="image_outer">
-                <div class="image_caption_wrap">
-                  <div class="image_inner">
-                    <img src="/static/images/pic3.jpg" class="image" style="">
-                    <img src="/static/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; ">
-                    <div class="image_overlay">
-                      <div class="io_zoom_cont">
-                        <div class="io_zoom sprite"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item_bottom" filename="Dot Again.jpg-2"></div>
-            </div>
-          </div>
-          <div class="clear">&nbsp;</div>
-        </div>
-        <div class="itemnode" id="TPsbPSxc5vVX">
-          <div class="thumb_outer">
-            <div class="thumb_inner">
-              <img width="219" height="240" src="/static/images/pic3.jpg" style="width: 219px; height: 240px; top: -120px; left: -109px; " class="thumb">
-              <img src="/static/images/ajax-loader-circle-gray.gif" class="image_loading_icon" style="display: none; ">
-              </div>
-            </div>
-            <div class="view_cont">
-              <div class="view">
-                <div class="item_top" filename="Look Likes buldging.jpg-3" style="display: none; "></div>
-                <div class="image_outer">
-                  <div class="image_caption_wrap">
-                    <div class="image_inner">
-                      <img src="/static/images/pic3.jpg" class="image" style="">
-                      <div class="image_overlay">
-                        <div class="io_zoom_cont">
-                          <div class="io_zoom sprite"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="item_bottom" filename="Look Likes buldging.jpg-3"></div>
-              </div>
-            </div>
-            <div class="clear">&nbsp;</div>
-          </div>
-        </div>
-        <!-- Linear View Panel END -->
+      <span class="sprite arrowLeft"></span>
+      <span class="sprite arrowRight"></span>
 
-        <span class="sprite arrowLeft"></span>
-        <span class="sprite arrowRight"></span>
-
-        <!-- List View Panel BEGIN -->
-       <div class="scene viewer_mode" id="scene_main_1" style="width: 3789px; opacity: 1; display: none;">
+      <!-- List View Panel BEGIN -->
+      <div class="scene viewer_mode" id="scene_main_1" style="opacity: 1; width=100%; z-index=100;">
         <div class="vp_list_row vp_list_row_head">
           <div class="vp_list_col vp_list_cell_title">Name</div>
           <div class="vp_list_col vp_list_cell_viewer">&nbsp;</div>
@@ -263,51 +174,28 @@
         <div class="scene_grid" id="scene_grid_cont" style="width: 660px; ">
           <div id="scene_div_clear" class="clear"></div>
         </div>
-        <div class="itemnode vp_list_row vp_list_row_default" id="DFDI43euYcPR" sortableid="0">
-          <div class="vp_list_cell vp_list_cell_title">
-            <span class="list-item-fileicon-container"><img src="/static/css/images/file_icon_generic_picture.png"></span>
-            <span class="list-item-filename-display-container"><span>Find the Dot</span>.jpg</span>
-          </div>
-          <div class="vp_list_cell vp_list_cell_viewer">&nbsp;</div>
-          <div class="vp_list_cell vp_list_cell_size">29.2 KB</div>
-          <div class="vp_list_cell vp_list_cell_views">Oct. 3, 2011</div>
-          <div class="vp_list_cell vp_list_cell_viewdl">
-            <a class="btn btn_vieworiginal" target="_blank" href="/lDFDI43euYcPR" style="">View Original</a>
-          </div>
-        </div>
-        <div class="itemnode vp_list_row vp_list_row_default" id="vK46AG6iXHhU" sortableid="1">
-          <div class="vp_list_cell vp_list_cell_title">
-            <span class="list-item-fileicon-container"><img src="/static/css/images/file_icon_generic_picture.png"></span>
-            <span class="list-item-filename-display-container"><span>Dot Again</span>.jpg</span>
-          </div>
-          <div class="vp_list_cell vp_list_cell_viewer">&nbsp;</div>
-          <div class="vp_list_cell vp_list_cell_size">79.5 KB</div>
-          <div class="vp_list_cell vp_list_cell_views">Oct. 3, 2011</div>
-          <div class="vp_list_cell vp_list_cell_viewdl">
-            <a class="btn btn_vieworiginal" target="_blank" href="/lvK46AG6iXHhU" style="">View Original</a>
-          </div>
-        </div>
-        <div class="itemnode vp_list_row vp_list_row_default" id="TPsbPSxc5vVX" sortableid="2">
-          <div class="vp_list_cell vp_list_cell_title">
-            <span class="list-item-fileicon-container"><img src="/static/css/images/file_icon_generic_picture.png"></span>
-            <span class="list-item-filename-display-container"><span>Look Likes buldging</span>.jpg</span>
-          </div>
-          <div class="vp_list_cell vp_list_cell_viewer">&nbsp;</div>
-          <div class="vp_list_cell vp_list_cell_size">28.4 KB</div>
-          <div class="vp_list_cell vp_list_cell_views">Oct. 3, 2011</div>
-          <div class="vp_list_cell vp_list_cell_viewdl">
-            <a class="btn btn_vieworiginal" target="_blank" href="/lTPsbPSxc5vVX" style="">View Original</a>
-          </div>
-        </div>
-        <!-- List View Panel END -->
-
       </div>
+      <!-- List View Panel END -->
 
     </div>
-    <!-- Linear View File Thumb BEGIN -->
+
+    <!-- Linear View File Details BEGIN -->
+    <div class="details_container">
+      <h2 class="subheader_filename">Find the Dot.jpg</h2>
+      <a class="btn btn_vieworiginal" target="_blank" id="details_view_dl_btn" href="/lDFDI43euYcPR">View Original</a>
+      <div class="details_stats" style="display: block; ">
+        <p class="subheader_pager"><span id="pager_current_number">1</span> of <span id="pager_total_number">3</span></p>
+        <span class="details_vb"></span>
+        <p class="details_stat">6 Views</p><span class="details_vb"></span><p class="details_stat">29.2 KB</p>
+      </div>
+      <div class="clear"></div>
+      <p class="description">Can You find where the dot is? Look into the white circles.</p>
+      <div class="clear"></div>
+    </div>
+    <!-- Linear View File Details END -->
 
     <!-- Drag Indicator BEGIN -->
-    <div id="drag_indicator" style="display:none;">
+    <div id="drag_indicator">
       <div class="bg"></div>
       <div class="inside">
         <h1>Start sharing.</h1>

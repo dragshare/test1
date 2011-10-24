@@ -1,4 +1,5 @@
 import os
+from datetime import date
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect, HttpResponseBadRequest
 from django.utils.hashcompat import sha_constructor
@@ -110,7 +111,9 @@ def file_list(request):
             dataUrl = settings.MEDIA_UPLOAD_FILE_URL + user_tag
             datas = []
             for tag in tags:
-                data = [{'url': dataUrl + tag, 'name': tag}]
+                statinfo = os.stat(dest_dir + '/' + tag);
+                ctime = date.fromtimestamp(statinfo.st_ctime).strftime("%b %d, %Y");
+                data = [{'url': dataUrl + tag, 'name': tag, 'size': statinfo.st_size, 'ctime': ctime}]
                 datas = datas + data
             print simplejson.dumps(datas)
             return JSONResponse(datas)
